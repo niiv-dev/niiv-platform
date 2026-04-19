@@ -1,0 +1,1484 @@
+[
+  {
+    "name": "f1-simple-basic",
+    "input": {
+      "projectName": "TEST/f1",
+      "projectType": "Frontend",
+      "frontendType": "Simple (HTML, CSS, JS)",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "frontend/index.html"
+      ],
+      "content": [
+        {
+          "file": "frontend/index.html",
+          "includes": [
+            "NIIV Simple Frontend",
+            "<html"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "f2-simple-no-backend-check",
+    "input": {
+      "projectName": "TEST/f2",
+      "projectType": "Frontend",
+      "frontendType": "Simple (HTML, CSS, JS)",
+      "autoInstall": false
+    },
+    "expect": {
+      "notFiles": [
+        "frontend/api"
+      ]
+    }
+  },
+  {
+    "name": "f3-react-basic",
+    "input": {
+      "projectName": "TEST/f3",
+      "projectType": "Frontend",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "frontend/src/App.jsx",
+        "frontend/src/main.jsx",
+        "frontend/vite.config.js"
+      ],
+      "content": [
+        {
+          "file": "frontend/src/App.jsx",
+          "includes": [
+            "return <DemoPage />"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "f4-react-router-enabled",
+    "input": {
+      "projectName": "TEST/f4",
+      "projectType": "Frontend",
+      "frontendType": "Vite + React",
+      "useRouter": true,
+      "useAxios": false,
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/src/App.jsx",
+          "includes": [
+            "BrowserRouter",
+            "Routes",
+            "Route"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "f5-react-router-disabled",
+    "input": {
+      "projectName": "TEST/f5",
+      "projectType": "Frontend",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "autoInstall": false
+    },
+    "expect": {
+      "notContent": [
+        {
+          "file": "frontend/src/App.jsx",
+          "includes": [
+            "BrowserRouter"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "f6-react-axios-enabled",
+    "input": {
+      "projectName": "TEST/f6",
+      "projectType": "Frontend",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": true,
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/package.json",
+          "includes": [
+            "axios"
+          ]
+        }
+      ],
+      "notFiles": [
+        "frontend/src/api/api.js"
+      ]
+    }
+  },
+  {
+    "name": "f7-react-router-axios",
+    "input": {
+      "projectName": "TEST/f7",
+      "projectType": "Frontend",
+      "frontendType": "Vite + React",
+      "useRouter": true,
+      "useAxios": true,
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/package.json",
+          "includes": [
+            "axios",
+            "react-router-dom"
+          ]
+        },
+        {
+          "file": "frontend/src/App.jsx",
+          "includes": [
+            "BrowserRouter"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "f8-react-env-check",
+    "input": {
+      "projectName": "TEST/f8",
+      "projectType": "Frontend",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "frontend/.env"
+      ]
+    }
+  },
+  {
+    "name": "f9-react-no-api-folder",
+    "input": {
+      "projectName": "TEST/f9",
+      "projectType": "Frontend",
+      "frontendType": "Vite + React",
+      "useRouter": true,
+      "useAxios": true,
+      "autoInstall": false
+    },
+    "expect": {
+      "notFiles": [
+        "frontend/src/api"
+      ]
+    }
+  },
+  {
+    "name": "f10-react-component-check",
+    "input": {
+      "projectName": "TEST/f10",
+      "projectType": "Frontend",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/src/components/DemoComponent.jsx",
+          "includes": [
+            "Frontend Only Project"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "b1-basic-files",
+    "input": {
+      "projectName": "TEST/b1",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "backend/server.js",
+        "backend/package.json",
+        "backend/.env"
+      ]
+    }
+  },
+  {
+    "name": "b2-basic-content",
+    "input": {
+      "projectName": "TEST/b2",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/server.js",
+          "includes": [
+            "Hello from Basic backend",
+            "/api/demo"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "b3-basic-no-structured-folders",
+    "input": {
+      "projectName": "TEST/b3",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "notFiles": [
+        "backend/src/models",
+        "backend/src/controllers",
+        "backend/src/routes"
+      ]
+    }
+  },
+  {
+    "name": "b4-structured-folders",
+    "input": {
+      "projectName": "TEST/b4",
+      "projectType": "Backend",
+      "backendStructure": "Structured",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "backend/src/models/demo.model.js",
+        "backend/src/controllers/demo.controller.js",
+        "backend/src/routes/demo.route.js",
+        "backend/src/middlewares/logger.middleware.js",
+        "backend/src/config/app.config.js"
+      ]
+    }
+  },
+  {
+    "name": "b5-structured-server-content",
+    "input": {
+      "projectName": "TEST/b5",
+      "projectType": "Backend",
+      "backendStructure": "Structured",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/server.js",
+          "includes": [
+            "requestLogger",
+            "demoRoute",
+            "APP_NAME"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "b6-structured-env",
+    "input": {
+      "projectName": "TEST/b6",
+      "projectType": "Backend",
+      "backendStructure": "Structured",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/.env",
+          "includes": [
+            "PORT=5000"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "b7-basic-db-hook-present",
+    "input": {
+      "projectName": "TEST/b7",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/server.js",
+          "includes": [
+            "NIIV_DB_HOOK"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "b8-structured-db-hook-present",
+    "input": {
+      "projectName": "TEST/b8",
+      "projectType": "Backend",
+      "backendStructure": "Structured",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/server.js",
+          "includes": [
+            "NIIV_DB_HOOK"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "b9-package-json-basic",
+    "input": {
+      "projectName": "TEST/b9",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/package.json",
+          "includes": [
+            "express",
+            "cors",
+            "dotenv"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "b10-package-json-structured",
+    "input": {
+      "projectName": "TEST/b10",
+      "projectType": "Backend",
+      "backendStructure": "Structured",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/package.json",
+          "includes": [
+            "express",
+            "cors",
+            "dotenv"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "d1-mongo-basic-db-file",
+    "input": {
+      "projectName": "TEST/d1",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "MongoDB",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "backend/db.js"
+      ]
+    }
+  },
+  {
+    "name": "d2-mongo-basic-server-injection",
+    "input": {
+      "projectName": "TEST/d2",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "MongoDB",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/server.js",
+          "includes": [
+            "connectDB",
+            "await connectDB"
+          ]
+        },
+        {
+          "file": "backend/db.js",
+          "includes": [
+            "MongoDB connected"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "d3-mongo-structured-db-file",
+    "input": {
+      "projectName": "TEST/d3",
+      "projectType": "Backend",
+      "backendStructure": "Structured",
+      "database": "MongoDB",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "backend/src/config/db.js"
+      ]
+    }
+  },
+  {
+    "name": "d4-mongo-env-added",
+    "input": {
+      "projectName": "TEST/d4",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "MongoDB",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/.env",
+          "includes": [
+            "MONGO_URI"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "d5-postgres-basic-db",
+    "input": {
+      "projectName": "TEST/d5",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "PostgreSQL",
+      "dbUser": "postgres",
+      "dbPassword": "123",
+      "dbName": "niiv_db",
+      "dbHost": "localhost",
+      "dbPort": "5432",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "backend/db.js"
+      ]
+    }
+  },
+  {
+    "name": "d6-postgres-env",
+    "input": {
+      "projectName": "TEST/d6",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "PostgreSQL",
+      "dbUser": "postgres",
+      "dbPassword": "123",
+      "dbName": "niiv_db",
+      "dbHost": "localhost",
+      "dbPort": "5432",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/.env",
+          "includes": [
+            "DB_USER",
+            "DB_PASSWORD",
+            "DB_NAME"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "d7-postgres-server-injection",
+    "input": {
+      "projectName": "TEST/d7",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "PostgreSQL",
+      "dbUser": "postgres",
+      "dbPassword": "123",
+      "dbName": "niiv_db",
+      "dbHost": "localhost",
+      "dbPort": "5432",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/server.js",
+          "includes": [
+            "PostgreSQL connected"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "d8-crud-mongo-structured",
+    "input": {
+      "projectName": "TEST/d8",
+      "projectType": "Backend",
+      "backendStructure": "Structured",
+      "database": "MongoDB",
+      "generateCrud": true,
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "backend/src/models/item.model.js",
+        "backend/src/controllers/item.controller.js",
+        "backend/src/routes/item.route.js"
+      ]
+    }
+  },
+  {
+    "name": "d9-crud-postgres-structured",
+    "input": {
+      "projectName": "TEST/d9",
+      "projectType": "Backend",
+      "backendStructure": "Structured",
+      "database": "PostgreSQL",
+      "generateCrud": true,
+      "dbUser": "postgres",
+      "dbPassword": "123",
+      "dbName": "niiv_db",
+      "dbHost": "localhost",
+      "dbPort": "5432",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "backend/src/models/item.model.js",
+        "backend/src/routes/item.route.js"
+      ]
+    }
+  },
+  {
+    "name": "d10-no-crud-basic",
+    "input": {
+      "projectName": "TEST/d10",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "MongoDB",
+      "generateCrud": true,
+      "autoInstall": false
+    },
+    "expect": {
+      "notFiles": [
+        "backend/src/models/item.model.js",
+        "backend/src/routes/item.route.js"
+      ]
+    }
+  },
+  {
+    "name": "fs1-separate-basic",
+    "input": {
+      "projectName": "TEST/fs1",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "backend/server.js",
+        "frontend/src/App.jsx"
+      ]
+    }
+  },
+  {
+    "name": "fs2-separate-api-layer",
+    "input": {
+      "projectName": "TEST/fs2",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": true,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "frontend/src/api/api.js"
+      ],
+      "content": [
+        {
+          "file": "frontend/src/api/api.js",
+          "includes": [
+            "axios",
+            "/demo"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "fs3-separate-router",
+    "input": {
+      "projectName": "TEST/fs3",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": true,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/src/App.jsx",
+          "includes": [
+            "BrowserRouter"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "fs4-separate-mongo-crud",
+    "input": {
+      "projectName": "TEST/fs4",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Structured",
+      "frontendType": "Vite + React",
+      "useRouter": true,
+      "useAxios": true,
+      "database": "MongoDB",
+      "generateCrud": true,
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "backend/src/routes/item.route.js",
+        "frontend/src/api/api.js"
+      ],
+      "content": [
+        {
+          "file": "frontend/src/api/api.js",
+          "includes": [
+            "/items"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "fs5-separate-postgres-crud",
+    "input": {
+      "projectName": "TEST/fs5",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Structured",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": true,
+      "database": "PostgreSQL",
+      "generateCrud": true,
+      "dbUser": "postgres",
+      "dbPassword": "123",
+      "dbName": "niiv_db",
+      "dbHost": "localhost",
+      "dbPort": "5432",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "backend/src/routes/item.route.js",
+        "frontend/src/api/api.js"
+      ]
+    }
+  },
+  {
+    "name": "fs6-unified-basic",
+    "input": {
+      "projectName": "TEST/fs6",
+      "projectType": "Fullstack",
+      "fullstackMode": "Unified (Single Deployable App)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "server.js",
+        "frontend/src/App.jsx",
+        "package.json"
+      ]
+    }
+  },
+  {
+    "name": "fs7-unified-no-backend-folder",
+    "input": {
+      "projectName": "TEST/fs7",
+      "projectType": "Fullstack",
+      "fullstackMode": "Unified (Single Deployable App)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "notFiles": [
+        "backend"
+      ]
+    }
+  },
+  {
+    "name": "fs8-unified-api-layer",
+    "input": {
+      "projectName": "TEST/fs8",
+      "projectType": "Fullstack",
+      "fullstackMode": "Unified (Single Deployable App)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": true,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "frontend/src/api/api.js"
+      ]
+    }
+  },
+  {
+    "name": "fs9-unified-mongo-crud",
+    "input": {
+      "projectName": "TEST/fs9",
+      "projectType": "Fullstack",
+      "fullstackMode": "Unified (Single Deployable App)",
+      "backendStructure": "Structured",
+      "frontendType": "Vite + React",
+      "useRouter": true,
+      "useAxios": true,
+      "database": "MongoDB",
+      "generateCrud": true,
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "src/routes/item.route.js",
+        "frontend/src/api/api.js"
+      ]
+    }
+  },
+  {
+    "name": "fs10-unified-postgres-crud",
+    "input": {
+      "projectName": "TEST/fs10",
+      "projectType": "Fullstack",
+      "fullstackMode": "Unified (Single Deployable App)",
+      "backendStructure": "Structured",
+      "frontendType": "Vite + React",
+      "useRouter": true,
+      "useAxios": true,
+      "database": "PostgreSQL",
+      "generateCrud": true,
+      "dbUser": "postgres",
+      "dbPassword": "123",
+      "dbName": "niiv_db",
+      "dbHost": "localhost",
+      "dbPort": "5432",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "src/routes/item.route.js",
+        "frontend/src/api/api.js"
+      ]
+    }
+  },
+  {
+    "name": "c1-fullstack-react-fetch-demo",
+    "input": {
+      "projectName": "TEST/c1",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/src/api/api.js",
+          "includes": [
+            "/demo"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c2-fullstack-react-axios-demo",
+    "input": {
+      "projectName": "TEST/c2",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": true,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/src/api/api.js",
+          "includes": [
+            "axios",
+            "/demo"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c3-fullstack-crud-api-items",
+    "input": {
+      "projectName": "TEST/c3",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Structured",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": true,
+      "database": "MongoDB",
+      "generateCrud": true,
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/src/api/api.js",
+          "includes": [
+            "/items"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c4-fullstack-demo-vs-crud-switch",
+    "input": {
+      "projectName": "TEST/c4",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Structured",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "MongoDB",
+      "generateCrud": false,
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/src/api/api.js",
+          "includes": [
+            "/demo"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c5-vite-proxy-config",
+    "input": {
+      "projectName": "TEST/c5",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/vite.config.js",
+          "includes": [
+            "proxy",
+            "localhost:5000"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c6-env-api-base",
+    "input": {
+      "projectName": "TEST/c6",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/.env",
+          "includes": [
+            "VITE_API_BASE"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c7-unified-concurrently-script",
+    "input": {
+      "projectName": "TEST/c7",
+      "projectType": "Fullstack",
+      "fullstackMode": "Unified (Single Deployable App)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "package.json",
+          "includes": [
+            "concurrently",
+            "dev:backend",
+            "dev:frontend"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c8-unified-react-build-config",
+    "input": {
+      "projectName": "TEST/c8",
+      "projectType": "Fullstack",
+      "fullstackMode": "Unified (Single Deployable App)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "server.js",
+          "includes": [
+            "dist",
+            "express.static"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c9-unified-simple-static",
+    "input": {
+      "projectName": "TEST/c9",
+      "projectType": "Fullstack",
+      "fullstackMode": "Unified (Single Deployable App)",
+      "backendStructure": "Basic",
+      "frontendType": "Simple (HTML, CSS, JS)",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "server.js",
+          "includes": [
+            "frontend/index.html"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c10-backend-health-route",
+    "input": {
+      "projectName": "TEST/c10",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/server.js",
+          "includes": [
+            "/api/health"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c11-structured-logger-middleware",
+    "input": {
+      "projectName": "TEST/c11",
+      "projectType": "Backend",
+      "backendStructure": "Structured",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "backend/src/middlewares/logger.middleware.js"
+      ]
+    }
+  },
+  {
+    "name": "c12-react-demo-component-data",
+    "input": {
+      "projectName": "TEST/c12",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/src/components/DemoComponent.jsx",
+          "includes": [
+            "JSON.stringify"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c13-react-main-root",
+    "input": {
+      "projectName": "TEST/c13",
+      "projectType": "Frontend",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/src/main.jsx",
+          "includes": [
+            "createRoot"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c14-react-index-html-root",
+    "input": {
+      "projectName": "TEST/c14",
+      "projectType": "Frontend",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/index.html",
+          "includes": [
+            "<div id=\"root\"></div>"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "c15-backend-demo-route",
+    "input": {
+      "projectName": "TEST/c15",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/server.js",
+          "includes": [
+            "/api/demo"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "e1-project-name-nested-path",
+    "input": {
+      "projectName": "TEST/e1/nested/app",
+      "projectType": "Frontend",
+      "frontendType": "Simple (HTML, CSS, JS)",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "frontend/index.html"
+      ]
+    }
+  },
+  {
+    "name": "e2-recreate-existing-folder",
+    "input": {
+      "projectName": "TEST/e2",
+      "projectType": "Frontend",
+      "frontendType": "Simple (HTML, CSS, JS)",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "frontend/index.html"
+      ]
+    }
+  },
+  {
+    "name": "e3-no-db-no-env-overwrite",
+    "input": {
+      "projectName": "TEST/e3",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/.env",
+          "includes": [
+            "PORT=5000"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "e4-mongo-does-not-remove-port",
+    "input": {
+      "projectName": "TEST/e4",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "MongoDB",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/.env",
+          "includes": [
+            "PORT=5000",
+            "MONGO_URI"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "e5-postgres-env-overwrite-risk",
+    "input": {
+      "projectName": "TEST/e5",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "PostgreSQL",
+      "dbUser": "postgres",
+      "dbPassword": "123",
+      "dbName": "niiv_db",
+      "dbHost": "localhost",
+      "dbPort": "5432",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/.env",
+          "includes": [
+            "DB_USER",
+            "DB_NAME"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "e6-db-hook-replaced",
+    "input": {
+      "projectName": "TEST/e6",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "MongoDB",
+      "autoInstall": false
+    },
+    "expect": {
+      "notContent": [
+        {
+          "file": "backend/server.js",
+          "includes": [
+            "// NIIV_DB_HOOK"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "e7-crud-not-generated-without-structured",
+    "input": {
+      "projectName": "TEST/e7",
+      "projectType": "Backend",
+      "backendStructure": "Basic",
+      "database": "MongoDB",
+      "generateCrud": true,
+      "autoInstall": false
+    },
+    "expect": {
+      "notFiles": [
+        "backend/src/models/item.model.js"
+      ]
+    }
+  },
+  {
+    "name": "e8-frontend-no-backend-api-call",
+    "input": {
+      "projectName": "TEST/e8",
+      "projectType": "Frontend",
+      "frontendType": "Simple (HTML, CSS, JS)",
+      "autoInstall": false
+    },
+    "expect": {
+      "notContent": [
+        {
+          "file": "frontend/index.html",
+          "includes": [
+            "/api/demo"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "e9-react-no-backend-api-file",
+    "input": {
+      "projectName": "TEST/e9",
+      "projectType": "Frontend",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "autoInstall": false
+    },
+    "expect": {
+      "notFiles": [
+        "frontend/src/api/api.js"
+      ]
+    }
+  },
+  {
+    "name": "e10-fullstack-unified-no-backend-folder",
+    "input": {
+      "projectName": "TEST/e10",
+      "projectType": "Fullstack",
+      "fullstackMode": "Unified (Single Deployable App)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "notFiles": [
+        "backend"
+      ]
+    }
+  },
+  {
+    "name": "e11-fullstack-unified-root-server",
+    "input": {
+      "projectName": "TEST/e11",
+      "projectType": "Fullstack",
+      "fullstackMode": "Unified (Single Deployable App)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "server.js"
+      ]
+    }
+  },
+  {
+    "name": "e12-fullstack-separate-keeps-backend",
+    "input": {
+      "projectName": "TEST/e12",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": false,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "files": [
+        "backend/server.js"
+      ]
+    }
+  },
+  {
+    "name": "e13-react-router-import-present",
+    "input": {
+      "projectName": "TEST/e13",
+      "projectType": "Frontend",
+      "frontendType": "Vite + React",
+      "useRouter": true,
+      "useAxios": false,
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/src/App.jsx",
+          "includes": [
+            "react-router-dom"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "e14-axios-import-present",
+    "input": {
+      "projectName": "TEST/e14",
+      "projectType": "Fullstack",
+      "fullstackMode": "Separate (Frontend + Backend)",
+      "backendStructure": "Basic",
+      "frontendType": "Vite + React",
+      "useRouter": false,
+      "useAxios": true,
+      "database": "None",
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "frontend/src/api/api.js",
+          "includes": [
+            "import axios"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "e15-crud-route-registered",
+    "input": {
+      "projectName": "TEST/e15",
+      "projectType": "Backend",
+      "backendStructure": "Structured",
+      "database": "MongoDB",
+      "generateCrud": true,
+      "autoInstall": false
+    },
+    "expect": {
+      "content": [
+        {
+          "file": "backend/server.js",
+          "includes": [
+            "/api/items"
+          ]
+        }
+      ]
+    }
+  }
+]

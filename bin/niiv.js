@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { run } from "../src/modes.js";
+import { run } from "../src/core/engine.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";

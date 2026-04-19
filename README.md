@@ -1,33 +1,68 @@
 # NIIV
 
-> The foundation for Node & Vite applications.
+The foundation for Node and Vite applications.
 
 NIIV is an interactive scaffolding engine that generates production-ready:
 
-- Node.js backend
-- Vite + React frontend
-- Simple HTML frontend
-- Fullstack applications (separate or unified)
+* Node.js backend
+* Vite + React frontend
+* Simple HTML frontend
+* Fullstack applications (separate or unified)
 
-It gives you a working, deployable base in seconds.
+It now also supports database integration and generates a working CRUD system with a simple UI.
 
 ---
 
 # What Problem NIIV Solves
 
-Every time you start a project, you:
+Every time you start a project, you usually:
 
-- Create backend structure
-- Setup Express
-- Add routes
-- Add proxy for frontend
-- Configure Vite
-- Setup environment files
-- Connect frontend to backend
+* Create backend structure
+* Setup Express
+* Add routes
+* Configure database
+* Setup frontend
+* Configure Vite
+* Setup proxy
+* Connect frontend to backend
 
 NIIV automates this entire foundation layer.
 
-You start coding business logic immediately.
+You can start building actual features immediately.
+
+---
+
+# How to Use
+
+## Run directly (recommended)
+
+```
+npx niiv create
+```
+
+---
+
+## Install globally
+
+```
+npm install -g niiv
+```
+
+Then:
+
+```
+niiv create
+```
+
+---
+
+# CLI Commands
+
+```
+niiv create       Create a new project
+niiv --version    Show CLI version
+niiv --help       Show help
+```
 
 ---
 
@@ -35,17 +70,17 @@ You start coding business logic immediately.
 
 ## Project Types
 
-| Type        | Options Available |
-|-------------|-------------------|
-| Backend     | Basic / MVC       |
-| Frontend    | React / Simple    |
-| Fullstack   | Separate / Unified |
+| Type      | Options Available  |
+| --------- | ------------------ |
+| Backend   | Basic / Structured |
+| Frontend  | React / Simple     |
+| Fullstack | Separate / Unified |
 
 ---
 
-## Backend Structures
+# Backend Structures
 
-### Basic
+## Basic
 
 ```
 backend/
@@ -54,17 +89,16 @@ backend/
 ```
 
 Includes:
-- Express
-- CORS
-- JSON middleware
-- `/api/health`
-- `/api/demo`
 
-Minimal and clean.
+* Express
+* CORS
+* JSON middleware
+* `/api/health`
+* `/api/demo`
 
 ---
 
-### Structured (MVC)
+## Structured
 
 ```
 backend/
@@ -79,20 +113,62 @@ backend/
 ```
 
 Includes:
-- Logger middleware
-- Config layer
-- Modular routing
-- Clean separation of concerns
 
-Recommended for scalable systems.
+* Logger middleware
+* Config layer
+* Modular routing
+* Clean separation of concerns
 
 ---
 
-## Frontend Types
+# Database Support
 
-### 1. Vite + React (React 18)
+NIIV supports:
 
-Includes:
+* MongoDB
+* PostgreSQL
+
+When enabled, it automatically:
+
+* Creates DB connection
+* Updates environment variables
+* Injects connection into server
+
+---
+
+# CRUD Generation
+
+If database + CRUD is enabled:
+
+## Backend
+
+Generates full CRUD APIs:
+
+```
+POST   /api/items
+GET    /api/items
+PUT    /api/items/:id
+DELETE /api/items/:id
+```
+
+---
+
+## Frontend (React)
+
+Generates a working UI:
+
+* Add item
+* View items
+* Edit item
+* Delete item
+
+Everything is connected out of the box.
+
+---
+
+# Frontend Types
+
+## 1. Vite + React
 
 ```
 frontend/
@@ -103,23 +179,23 @@ frontend/
 ```
 
 Options:
-- React Router (optional)
-- Axios (optional)
-- Proxy auto-configured (if backend exists)
-- `.env` support
+
+* React Router (optional)
+* Axios or Fetch (optional)
+* Proxy auto-configured
+* Environment support
 
 ---
 
-### 2. Simple HTML
+## 2. Simple HTML
 
 ```
 frontend/
   index.html
 ```
 
-No build process.
-No framework.
-Works immediately.
+No build setup required.
+Runs instantly.
 
 ---
 
@@ -133,28 +209,25 @@ project/
   frontend/
 ```
 
-Backend and frontend run independently.
+### Run backend
 
-### Development
-
-Backend:
 ```
 cd backend
+npm install
 npm start
 ```
 
-Frontend (React):
+### Run frontend
+
 ```
 cd frontend
+npm install
 npm run dev
 ```
 
-Simple frontend:
-- Backend automatically serves static frontend
-
 ---
 
-## 2. Unified Mode (Single Deployable App)
+## 2. Unified Mode
 
 ```
 project/
@@ -162,15 +235,14 @@ project/
   frontend/
 ```
 
-Single Node server.
+Single deployable app.
 
-### Development (React)
+### Development
 
 ```
+npm install
 npm run dev
 ```
-
-Runs backend + frontend concurrently.
 
 ### Production
 
@@ -179,69 +251,49 @@ npm run build
 npm start
 ```
 
-Express serves:
-
-```
-frontend/dist
-```
-
-Single deployment.
-
 ---
 
-# Supported Combinations
-
-NIIV supports ALL combinations below:
-
-### Backend Only
-- Basic
-- MVC
-
-### Frontend Only
-- React
-- Simple
-
-### Fullstack (Separate)
-- Basic + React
-- Basic + Simple
-- MVC + React
-- MVC + Simple
-
-### Fullstack (Unified)
-- Basic + React
-- Basic + Simple
-- MVC + React
-- MVC + Simple
-
-All combinations are production-ready.
-
----
-
-# How API Connection Works
+# API Connection
 
 If backend exists:
 
-Frontend automatically calls:
+Frontend automatically connects to:
 
 ```
-/api/demo
+/api
 ```
 
-If using React in fullstack mode:
-- Vite proxy is configured automatically
-- No manual setup required
+React projects include automatic proxy configuration.
 
 ---
 
 # Environment Variables
 
-Backend:
+## Backend
+
 ```
 .env
 PORT=5000
 ```
 
-Frontend (React):
+## MongoDB
+
+```
+MONGO_URI=mongodb://localhost:27017/niiv_db
+```
+
+## PostgreSQL
+
+```
+DB_USER=postgres
+DB_PASSWORD=your_password
+DB_HOST=localhost
+DB_NAME=niiv_db
+DB_PORT=5432
+```
+
+## Frontend
+
 ```
 .env
 VITE_API_BASE=/api
@@ -249,13 +301,15 @@ VITE_API_BASE=/api
 
 ---
 
-# Deployment Guide
+# Deployment
 
 ## Separate
 
 1. Deploy backend
 2. Build frontend
-3. Configure API URL
+3. Update API base URL if needed
+
+---
 
 ## Unified
 
@@ -264,28 +318,53 @@ npm run build
 npm start
 ```
 
-Single server deployment.
+Single server handles everything.
 
 ---
 
-# What NIIV Does NOT Include
+# Supported Combinations
 
-- Authentication
-- Database integration
-- Payment systems
-- State management
-- Opinionated architecture
+NIIV supports all combinations:
 
-NIIV provides the foundation.
-You build the application logic.
+### Backend
+
+* Basic
+* Structured
+
+### Frontend
+
+* React
+* Simple
+
+### Fullstack
+
+* Separate
+* Unified
+
+With or without:
+
+* Database
+* CRUD
+* Router
+* Axios
+
+---
+
+# What NIIV Does Not Include
+
+* Authentication
+* Authorization
+* Advanced state management
+* Business logic
+
+NIIV focuses on the foundation layer.
 
 ---
 
 # Version
 
-v0.1.0  
-Sprint 1 Complete.
+v0.2.0
 
 ---
 
-NIIV is designed to remove repetitive setup so you can focus on real development.
+NIIV is built to remove repetitive setup and give you a working starting point instantly.

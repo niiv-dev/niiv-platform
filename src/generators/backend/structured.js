@@ -1,94 +1,14 @@
 import fs from "fs";
 import path from "path";
 
-/* =========================
-   PUBLIC FUNCTION
-========================= */
-
-export function createBackend(projectPath, structure) {
-  const backendPath = path.join(projectPath, "backend");
-  fs.mkdirSync(backendPath, { recursive: true });
-
-  if (structure === "Basic") {
-    createBasicBackend(backendPath);
-  } else {
-    createStructuredBackend(backendPath);
-  }
-}
-
-/* =========================
-   BASIC BACKEND
-========================= */
-
-function createBasicBackend(basePath) {
-  const packageJson = {
-    name: "backend",
-    version: "1.0.0",
-    type: "module",
-    scripts: {
-      start: "node server.js"
-    },
-    dependencies: {
-      express: "^4.18.2",
-      cors: "^2.8.5",
-      dotenv: "^16.0.0"
-    }
-  };
-
-  fs.writeFileSync(
-    path.join(basePath, "package.json"),
-    JSON.stringify(packageJson, null, 2)
-  );
-
-  fs.writeFileSync(
-    path.join(basePath, ".env"),
-    "PORT=5000\n"
-  );
-
-  const serverCode = `
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-app.get("/api/health", (req, res) => {
-  res.json({ status: "OK" });
-});
-
-app.get("/api/demo", (req, res) => {
-  res.json({ message: "Hello from Basic backend 🚀" });
-});
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log("Server running on http://localhost:" + PORT);
-});
-`;
-
-  fs.writeFileSync(
-    path.join(basePath, "server.js"),
-    serverCode
-  );
-}
-
-/* =========================
-   STRUCTURED (MVC) BACKEND
-========================= */
-
-function createStructuredBackend(basePath) {
+export function createStructuredBackend(basePath) {
   // Folder structure
-  fs.mkdirSync(path.join(basePath, "src"));
-  fs.mkdirSync(path.join(basePath, "src", "models"));
-  fs.mkdirSync(path.join(basePath, "src", "controllers"));
-  fs.mkdirSync(path.join(basePath, "src", "routes"));
-  fs.mkdirSync(path.join(basePath, "src", "middlewares"));
-  fs.mkdirSync(path.join(basePath, "src", "config"));
+  fs.mkdirSync(path.join(basePath, "src"), { recursive: true });
+  fs.mkdirSync(path.join(basePath, "src", "models"), { recursive: true });
+  fs.mkdirSync(path.join(basePath, "src", "controllers"), { recursive: true });
+  fs.mkdirSync(path.join(basePath, "src", "routes"), { recursive: true });
+  fs.mkdirSync(path.join(basePath, "src", "middlewares"), { recursive: true });
+  fs.mkdirSync(path.join(basePath, "src", "config"), { recursive: true });
 
   const packageJson = {
     name: "backend",
@@ -147,7 +67,7 @@ export function requestLogger(req, res, next) {
 export class DemoModel {
   static getData() {
     return {
-      message: "Hello from MVC backend 🚀",
+      message: "Hello from Structured backend 🚀",
       timestamp: new Date()
     };
   }
@@ -212,6 +132,9 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// NIIV_DB_HOOK
+
 app.use(requestLogger);
 
 console.log("Starting:", APP_NAME);

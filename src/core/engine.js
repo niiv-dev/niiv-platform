@@ -1,14 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { createBackend } from "./backend.js";
-import { createFrontend } from "./frontend.js";
-import { showBanner, handleAutoInstall } from "./utils.js";
-import { askProjectConfig } from "./prompts.js";
-
-/* ========================================
-   PUBLIC ENGINE (NON-INTERACTIVE)
-======================================== */
-
+import { createBackend } from "../generators/backend/index.js";
+import { createFrontend } from "../generators/frontend/index.js";
+import { showBanner, handleAutoInstall } from "../utils/temp-utils.js";
+import { askProjectConfig } from "../prompts/index.js";
+import { handleDatabase } from "../generators/backend/db/index.js";
 export async function createProject(answers) {
   const projectPath = path.join(process.cwd(), answers.projectName);
 
@@ -16,7 +12,7 @@ export async function createProject(answers) {
     throw new Error("Folder already exists");
   }
 
-  fs.mkdirSync(projectPath);
+  fs.mkdirSync(projectPath, { recursive: true });
 
   switch (answers.projectType) {
     case "Backend":
@@ -39,13 +35,20 @@ export async function createProject(answers) {
       break;
   }
 
+  // 🔥 DATABASE INJECTION HERE
+  if (
+    answers.projectType === "Backend" ||
+    answers.projectType === "Fullstack"
+  ) {
+    handleDatabase(projectPath, answers);
+  }
+
   if (answers.autoInstall) {
     handleAutoInstall(projectPath, answers);
   }
 
   return projectPath;
 }
-
 /* ========================================
    CLI ENTRY (INTERACTIVE)
 ======================================== */
@@ -53,7 +56,13 @@ export async function createProject(answers) {
 export async function run() {
   showBanner();
 
-  const answers = await askProjectConfig();
+  let answers;
+
+if (process.env.NIIV_TEST) {
+  answers = JSON.parse(process.env.NIIV_TEST);
+} else {
+  answers = await askProjectConfig();
+}
 
   try {
     await createProject(answers);
