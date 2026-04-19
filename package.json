@@ -1,6 +1,6 @@
 {
   "name": "@niiv/cli",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "The foundation for Node & Vite applications",
   "type": "module",
   "bin": {
