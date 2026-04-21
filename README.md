@@ -45,7 +45,7 @@ npx niiv create
 ## Install globally
 
 ```
-npm install -g niiv
+npm install -g @niiv/cli
 ```
 
 Then:
